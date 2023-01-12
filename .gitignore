@@ -1,3 +1,6 @@
 .env
 *.test.*
 *.csv
+config.json
+companies.json
+main

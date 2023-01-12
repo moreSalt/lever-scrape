@@ -1,15 +1,40 @@
-# Lever Scraper
+# Lever Scrape
 
-A tool to scrape for Lever pages, their open positions, and keyword matching jobs.
+A tool to scrape Lever pages for open positions based on your keywords. Originally it also used Google's search API with dorking to find a bunch of lever pages, but that only goes up to 100.
 
 ## Usage
+1. create companies.json to include companies lever pages
+```json
+[
+    "https://jobs.lever.co/joshstoysandgames",
+    "https://jobs.lever.co/coupa/",
+    "https://jobs.lever.co/verkada",
+    "https://jobs.lever.co/Qashier",
+]
+```
+2. Add config.json (example below)
+    1. Keywords:
+        1. `+` is a positive keyword, if keywords includes at least 1, then the position title needs to contain at least one of these.
+        2. `~` Same as `+`, but considered it's own category, this way you can have + as the type (intern, junior, etc) and this one `~` as keyword about the position itself (software, sales, etc)
+        3. `-` is a negative keyword if the position title contain it, it will not be considered.
+    2. Change the country (US, UK, etc) or `ALL` to remove the country requirement
+```json
+{
+    "keywords": [
+        "+coop",
+        "+co-op",
+        "+intern",
+        "+internship",
+        "~summer",
+        "-winter",
+    ],
+    "country": "ALL"
+}
+```
+3. Run it `go run main.go`
+4. All jobs will be in output/all.csv and filtered jobs will be in output/filtered.csv
 
-- Create a .env file and add your Google Search API key
-```
-GOOGLE=api_key_here
-```
-- Configure config.json (take a look at the file for an example)
-    - startIndex: where in the google search result you would like to start, starting at 1
-    - count: the number of results you would like to go though. Each request to google returns a maximum of 10 results, so if you put in 50, it would make 5 requests to google.
-    - keywords: + and ~ means required, the job title must have at least one of the + and ~ keywords in it. - means negative, if the job name has a negative keyword it won't be matched.
-    - Country: country you would like to match with `US`
+## TODO
+- [ ] Add Greenhouse
+- [ ] Add Workday
+
