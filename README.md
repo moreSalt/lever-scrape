@@ -10,6 +10,7 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
     "https://jobs.lever.co/coupa/",
     "https://jobs.lever.co/verkada",
     "https://jobs.lever.co/Qashier",
+    "https://boards.greenhouse.io/axios/jobs"
 ]
 ```
 2. Add config.json (example below)
@@ -26,7 +27,7 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
         "+intern",
         "+internship",
         "~summer",
-        "-winter",
+        "-winter"
     ],
     "country": "ALL"
 }
@@ -35,6 +36,5 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
 4. All jobs will be in output/all.csv and filtered jobs will be in output/filtered.csv
 
 ## TODO
-- [ ] Add Greenhouse
+- [x] Add Greenhouse
 - [ ] Add Workday
-

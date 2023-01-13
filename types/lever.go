@@ -3,7 +3,7 @@ package t
 type LeverRes []struct {
 	AdditionalPlain  string        `json:"additionalPlain"`
 	Additional       string        `json:"additional"`
-	Categories       Categories    `json:"categories"`
+	Categories       categories    `json:"categories"`
 	CreatedAt        int64         `json:"createdAt"`
 	DescriptionPlain string        `json:"descriptionPlain"`
 	Description      string        `json:"description"`
@@ -15,7 +15,7 @@ type LeverRes []struct {
 	HostedURL        string        `json:"hostedUrl"`
 	ApplyURL         string        `json:"applyUrl"`
 }
-type Categories struct {
+type categories struct {
 	Commitment string `json:"commitment"`
 	Location   string `json:"location"`
 	Team       string `json:"team"`
