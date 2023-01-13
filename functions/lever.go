@@ -7,6 +7,7 @@ import (
 	"log"
 	http "net/http"
 	"strings"
+	"time"
 
 	// "sync"
 
@@ -20,13 +21,17 @@ func ScrapeLever(link string, location string, requ []string, pos []string, neg 
 	log.Println(companyName, "- Searching")
 
 	// Create request
+	client := &http.Client{
+		// set the time out
+		Timeout: 30 * time.Second,
+	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	// Send request
-	res, err := http.DefaultClient.Do(req)
+	res, err := client.Do(req)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -72,7 +77,7 @@ func ScrapeLever(link string, location string, requ []string, pos []string, neg 
 
 		allSlice = append(allSlice, formatJob)
 		if matched == true && (location == formatJob.Location || location == "ALL") {
-			log.Printf("%v\t%v\t%v", formatJob.Company, formatJob.Position, formatJob.PositionURL)
+			// log.Printf("%v\t%v\t%v", formatJob.Company, formatJob.Position, formatJob.PositionURL)
 			filSlice = append(filSlice, formatJob)
 		}
 

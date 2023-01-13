@@ -8,6 +8,7 @@ import (
 	"log"
 	http "net/http"
 	"strings"
+	"time"
 
 	t "github.com/moreSalt/lever-scrape/types"
 )
@@ -19,6 +20,10 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 	log.Println(companyName, "- Searching")
 
 	// Create request
+	client := &http.Client{
+		// set the time out
+		Timeout: 30 * time.Second,
+	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Println("Error creating req:", companyName)
@@ -26,7 +31,7 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 	}
 
 	// Send request
-	res, err := http.DefaultClient.Do(req)
+	res, err := client.Do(req)
 	if err != nil {
 		log.Println("Error sending req:", companyName)
 		return nil, nil, err
@@ -76,7 +81,7 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 
 		allSlice = append(allSlice, formatJob)
 		if matched == true {
-			log.Printf("%v\t%v\t%v", formatJob.Company, formatJob.Position, formatJob.PositionURL)
+			// log.Printf("%v\t%v\t%v", formatJob.Company, formatJob.Position, formatJob.PositionURL)
 			filSlice = append(filSlice, formatJob)
 		}
 
