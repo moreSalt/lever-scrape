@@ -105,7 +105,7 @@ func main() {
 	}
 	wg.Wait()
 
-	log.Printf("RESULTS:\nFiltered: %v\nAll:%v", len(filtered), len(all))
+	log.Println("FINISHED")
 
 	for i := 0; i < len(all); i++ {
 		for k := 0; k < len(all[i]); k++ {
