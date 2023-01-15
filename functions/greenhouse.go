@@ -26,28 +26,28 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		log.Println("Error creating req:", companyName)
+		// log.Println("Error creating req:", companyName)
 		return nil, nil, err
 	}
 
 	// Send request
 	res, err := client.Do(req)
 	if err != nil {
-		log.Println("Error sending req:", companyName)
+		// log.Println("Error sending req:", companyName)
 		return nil, nil, err
 	}
 	defer res.Body.Close()
 
 	// Invalid statuscode
 	if res.StatusCode != 200 {
-		log.Println("Error bad status:", companyName)
+		// log.Println("Error bad status:", companyName)
 		return nil, nil, errors.New(res.Status)
 	}
 
 	// Read response body
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		log.Println("Error reading res body:", companyName)
+		// log.Println("Error reading res body:", companyName)
 		return nil, nil, err
 	}
 
@@ -55,7 +55,7 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 	var result t.GreenHouseRes
 	err = json.Unmarshal([]byte(body), &result)
 	if err != nil {
-		log.Println("Error converting:", companyName)
+		// log.Println("Error converting:", companyName)
 		return nil, nil, err
 	}
 
@@ -67,7 +67,7 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 		job := result.Jobs[i]
 		matched, err := KeywordsSearch(requ, pos, neg, job.Title)
 		if err != nil {
-			log.Println(companyName, "- Error matching", job.Title, ":", err)
+			// log.Println("Error matching", job.Title, ":", err)
 			continue
 		}
 

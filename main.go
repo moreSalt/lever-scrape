@@ -89,20 +89,28 @@ func main() {
 			// Greenhouse
 			if strings.Contains(matches[index], "https://boards.greenhouse.io/") {
 				filteredCom, allCom, err = functions.ScrapeGreenhouse(matches[index], r, p, n)
-				if err != nil {
-					log.Println(err)
-					return
-				}
+				// if err != nil {
+				// 	log.Println(err)
+				// 	wg.Done()
+				// 	return
+				// }
 
 				// Lever
 			} else if strings.Contains(matches[index], "https://jobs.lever.co/") {
 				filteredCom, allCom, err = functions.ScrapeLever(matches[index], config.Country, r, p, n)
-				if err != nil {
-					log.Println(err)
-					return
-				}
+				// if err != nil {
+				// 	log.Println(err)
+				// 	wg.Done()
+				// 	return
+				// }
 			} else {
 				log.Println("Unknown platform", matches[index])
+				return
+			}
+
+			if err != nil {
+				log.Println(matches[index], "ERROR:", err)
+				wg.Done()
 				return
 			}
 			*f = append(*f, filteredCom)

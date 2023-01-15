@@ -3,17 +3,17 @@
 A tool to scrape Lever pages for open positions based on your keywords. Originally it also used Google's search API with dorking to find a bunch of lever pages, but that only goes up to 100.
 
 ## Usage
-1. create companies.json to include companies lever pages
+1. create companies.json to include companies lever pages `touch companies.json`
 ```json
 [
     "https://jobs.lever.co/joshstoysandgames",
-    "https://jobs.lever.co/coupa/",
+    "https://jobs.lever.co/coupa",
     "https://jobs.lever.co/verkada",
     "https://jobs.lever.co/Qashier",
-    "https://boards.greenhouse.io/axios/jobs"
+    "https://boards.greenhouse.io/axios"
 ]
 ```
-2. Add config.json (example below)
+2. Add config.json (example below) `touch config.json`
     1. Keywords:
         1. `+` is a positive keyword, if keywords includes at least 1, then the position title needs to contain at least one of these.
         2. `~` Same as `+`, but considered it's own category, this way you can have + as the type (intern, junior, etc) and this one `~` as keyword about the position itself (software, sales, etc)
