@@ -15,7 +15,14 @@ import (
 
 // Makes a req to the companies api endpoint and then looks for matches, returns to slices: all jobs, filtered jobs
 func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([]t.Job, []t.Job, error) {
-	companyName := strings.Split(link, "/")[3]
+	var companyName string
+	if strings.Contains(link, "https://boards.greenhouse.io/embed/job_board/?for=") {
+		companyName = strings.Split(strings.Split(link, "for=")[1], "&")[0]
+	} else {
+		companyName = strings.Split(link, "/")[3]
+
+	}
+
 	url := fmt.Sprintf("https://boards-api.greenhouse.io/v1/boards/%v/jobs", companyName)
 	log.Println(companyName, "- Searching")
 

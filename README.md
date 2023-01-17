@@ -6,11 +6,9 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
 1. create companies.json to include companies lever pages `touch companies.json`
 ```json
 [
-    "https://jobs.lever.co/joshstoysandgames",
-    "https://jobs.lever.co/coupa",
-    "https://jobs.lever.co/verkada",
-    "https://jobs.lever.co/Qashier",
-    "https://boards.greenhouse.io/axios"
+    "https://jobs.lever.co/joshstoysandgames",,
+    "https://boards.greenhouse.io/axios",
+    "https://boards.greenhouse.io/embed/job_board/?for=zwift"
 ]
 ```
 2. Add config.json (example below) `touch config.json`
@@ -38,3 +36,4 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
 ## TODO
 - [x] Add Greenhouse
 - [ ] Add Workday
+- [ ] Add option for JSON output
