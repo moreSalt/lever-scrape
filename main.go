@@ -93,6 +93,10 @@ func main() {
 				// Lever
 			} else if strings.Contains(matches[index], "https://jobs.lever.co/") {
 				filteredCom, allCom, err = functions.ScrapeLever(matches[index], config.Country, r, p, n)
+
+				// Workable
+			} else if strings.Contains(matches[index], "https://apply.workable.com/") {
+				filteredCom, allCom, err = functions.ScrapeWorkable(matches[index], config.Country, r, p, n)
 			} else {
 				log.Println("Unknown platform", matches[index])
 				wg.Done()
