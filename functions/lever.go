@@ -12,10 +12,11 @@ import (
 	// "sync"
 
 	t "github.com/moreSalt/lever-scrape/types"
+	slices "golang.org/x/exp/slices"
 )
 
 // Makes a req to the companies api endpoint and then looks for matches, returns to slices: all jobs, filtered jobs
-func ScrapeLever(link string, location string, requ []string, pos []string, neg []string) ([]t.Job, []t.Job, error) {
+func ScrapeLever(link string, location []string, requ []string, pos []string, neg []string) ([]t.Job, []t.Job, error) {
 	companyName := strings.Split(link, "/")[3]
 	url := fmt.Sprintf("https://api.lever.co/v0/postings/%v", companyName)
 	log.Println(companyName, "- Searching")
@@ -23,7 +24,7 @@ func ScrapeLever(link string, location string, requ []string, pos []string, neg 
 	// Create request
 	client := &http.Client{
 		// set the time out
-		Timeout: 30 * time.Second,
+		Timeout: 15 * time.Second,
 	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -81,7 +82,7 @@ func ScrapeLever(link string, location string, requ []string, pos []string, neg 
 		}
 
 		allSlice = append(allSlice, formatJob)
-		if matched == true && (location == formatJob.Location || location == "ALL") {
+		if matched == true && (slices.Contains(location, formatJob.Location) || (slices.Contains(location, "ALL"))) {
 			// log.Printf("%v\t%v\t%v", formatJob.Company, formatJob.Position, formatJob.PositionURL)
 			filSlice = append(filSlice, formatJob)
 		}

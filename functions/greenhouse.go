@@ -29,7 +29,7 @@ func ScrapeGreenhouse(link string, requ []string, pos []string, neg []string) ([
 	// Create request
 	client := &http.Client{
 		// set the time out
-		Timeout: 30 * time.Second,
+		Timeout: 15 * time.Second,
 	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

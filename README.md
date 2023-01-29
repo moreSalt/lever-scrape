@@ -31,7 +31,7 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
     "country": "ALL"
 }
 ```
-3. Run it `go run main.go`
+3. Run it `go run main.go` or `./main`
 4. All jobs will be in output/all.csv and filtered jobs will be in output/filtered.csv
 
 ## TODO
