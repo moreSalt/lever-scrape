@@ -17,7 +17,7 @@ A tool to scrape Lever pages for open positions based on your keywords. Original
         1. `+` is a positive keyword, if keywords includes at least 1, then the position title needs to contain at least one of these.
         2. `~` Same as `+`, but considered it's own category, this way you can have + as the type (intern, junior, etc) and this one `~` as keyword about the position itself (software, sales, etc)
         3. `-` is a negative keyword if the position title contain it, it will not be considered.
-    2. Change the country (US, UK, etc) or `ALL` to remove the country requirement
+    2. Change the country (US, UK, etc) or `ALL` to remove the country requirement (Greenhouse does not have country filtering)
 ```json
 {
     "keywords": [
